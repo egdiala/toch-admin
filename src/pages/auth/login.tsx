@@ -13,7 +13,7 @@ export const LoginPage = () => {
             <AnimatePresence mode="popLayout">
                 {
                     step === "login" ? (
-                        <motion.form initial={routeVariants.initial} animate={routeVariants.final} exit={routeVariants.initial} className="grid gap-6 justify-items-center py-8 px-12 bg-white w-full rounded-xl max-w-[28.8125rem]">
+                        <motion.form initial={routeVariants.initial} animate={routeVariants.final} exit={routeVariants.initial} className="grid gap-6 justify-items-center py-6 md:py-8 px-5 md:px-12 bg-white w-full rounded-xl max-w-[28.8125rem]">
                             <h1 className="text-green-0 text-3xl font-extrabold">Sign in</h1>
                             <div className="flex flex-col w-full gap-6 pb-6">
                                 <InputField label="Email" type="text" placeholder="Enter your email" iconLeft="lucide:mail" />
