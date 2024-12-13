@@ -1,0 +1,39 @@
+.z-touch-input--outer {
+  @apply grid gap-1;
+}
+
+.z-touch-input--inner {
+  @apply relative w-full h-fit;
+}
+
+.z-touch-input {
+  @apply bg-transparent focus:outline-none block w-full py-[0.6875rem] px-3 rounded-lg caret-green-0 text-green-0 placeholder:text-grey-dark-2 transition-all duration-500 ease-out;
+}
+
+.z-touch-input--label {
+  @apply text-sm/6 font-normal text-green-0 !important;
+}
+
+.z-touch-input--left {
+  @apply pl-10 !important;
+}
+
+.z-touch-input--right {
+  @apply pr-10 !important;
+}
+
+.z-touch-input--border {
+  @apply border border-grey-dark-3 focus:border-green-0 focus:ring-1 focus:ring-offset-2 focus:ring-offset-transparent focus:ring-green-0/45 transition-all duration-500 ease-out !important;
+}
+
+.z-touch-input--border-error {
+  @apply border border-red-500 transition-all duration-500 ease-out !important;
+}
+
+.z-touch-input--error {
+  @apply text-red-500 font-normal text-xs !important;
+}
+
+.toggle-password-icon {
+  @apply absolute bottom-3 flex items-center right-0 pr-3.5;
+}

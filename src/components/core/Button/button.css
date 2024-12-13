@@ -1,0 +1,44 @@
+.z-touch-button {
+  @apply whitespace-nowrap overflow-hidden font-bold flex justify-center items-center py-3 px-8 gap-2 h-fit rounded-full disabled:cursor-not-allowed hover:outline-none hover:outline-0 focus:outline-none transform transition-all duration-300 ease-out !important;
+}
+
+.z-touch-button--primary {
+  @apply text-green-0 text-base bg-accent-1 hover:bg-accent-base disabled:bg-accent-base/15 disabled:hover:ring-0 !important;
+}
+
+.z-touch-button--secondary {
+  @apply text-green-0 text-base bg-orange-3 hover:bg-accent-base disabled:bg-accent-base/15 disabled:hover:ring-0 !important;
+}
+
+.z-touch-button--tertiary {
+  @apply text-green-0 text-base bg-grey-dark-4 hover:bg-accent-base disabled:bg-accent-base/15 disabled:hover:ring-0 !important;
+}
+
+.z-touch-button--outline {
+  @apply text-white hover:text-green-0 text-base bg-transparent hover:bg-accent-base border border-accent-1 hover:border-accent-base disabled:border-accent-base/15 disabled:text-green-0/15 disabled:hover:ring-0 !important;
+}
+
+.z-touch-button--ghost {
+  @apply text-accent-1 hover:text-accent-base text-base bg-transparent hover:bg-transparent disabled:text-accent-1/15 disabled:hover:ring-0 !important;
+}
+
+.z-touch-button--block {
+  @apply w-full !important;
+}
+
+.spinner {
+  animation-name: spin;
+  animation-duration: 800ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
