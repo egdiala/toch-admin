@@ -80,7 +80,7 @@ export const PasswordInput = forwardRef(function PasswordInput({ label, error, o
                 <RenderIf condition={!!iconLeft}>
                     <Icon
                         icon={iconLeft as string | IconifyIcon}
-                        className="size-5 left-3 text-grey-dark-2 peer-focus:text-green-0 mt-3.5 inset-x-0 absolute"
+                        className="size-5 left-3 text-grey-dark-2 peer-focus:text-green-0 mt-3 inset-x-0 absolute"
                     />
                 </RenderIf>
                 <Input as={Fragment}>
@@ -102,7 +102,7 @@ export const PasswordInput = forwardRef(function PasswordInput({ label, error, o
                                     exit="hidden"
                                     className="grid place-content-center"
                                 >
-                                    <Icon icon="lucide:eye-off" className="text-green-0" width={24} height={24} />
+                                    <Icon icon="lucide:eye-off" className="text-grey-dark-2" width={20} height={20} />
                                 </motion.span>
                                 ) : (
                                 <motion.span
@@ -113,7 +113,7 @@ export const PasswordInput = forwardRef(function PasswordInput({ label, error, o
                                     exit="hidden"
                                     className="grid place-content-center"
                                 >
-                                    <Icon icon="lucide:eye" className="text-green-0" width={24} height={24} />
+                                    <Icon icon="lucide:eye" className="text-grey-dark-2" width={20} height={20} />
                                 </motion.span>
                             )}
                         </AnimatePresence>

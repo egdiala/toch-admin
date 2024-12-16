@@ -70,7 +70,7 @@ export const InputField: FC<InputProps> = forwardRef(({ label, error, optional, 
         <RenderIf condition={!!iconLeft}>
           <Icon
             icon={iconLeft as string | IconifyIcon}
-            className="size-5 left-3 text-grey-dark-2 peer-focus:text-green-0 mt-3.5 inset-x-0 absolute"
+            className="size-5 left-3 text-grey-dark-2 peer-focus:text-green-0 mt-3 inset-x-0 absolute"
           />
         </RenderIf>
         <Input as={Fragment}>
@@ -79,7 +79,7 @@ export const InputField: FC<InputProps> = forwardRef(({ label, error, optional, 
         <RenderIf condition={!!iconRight}>
           <Icon
             icon={iconRight as string | IconifyIcon}
-            className="size-5 right-3 text-grey-dark-2 peer-focus:text-green-0 -mt-[2.1rem] absolute"
+            className="size-5 right-3 text-grey-dark-2 peer-focus:text-green-0 -mt-[2rem] absolute"
           />
         </RenderIf>
       </div>

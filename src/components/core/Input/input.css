@@ -7,7 +7,7 @@
 }
 
 .z-touch-input {
-  @apply bg-transparent focus:outline-none block w-full py-[0.6875rem] px-3 rounded-lg caret-green-0 text-green-0 placeholder:text-grey-dark-2 transition-all duration-500 ease-out;
+  @apply bg-transparent focus:outline-none text-sm block w-full py-[0.6875rem] px-3 rounded-[0.625rem] caret-green-0 text-green-0 placeholder:text-grey-dark-2 transition-all duration-500 ease-out;
 }
 
 .z-touch-input--label {
@@ -36,4 +36,8 @@
 
 .toggle-password-icon {
   @apply absolute bottom-3 flex items-center right-0 pr-3.5;
+}
+
+.z-touch-otp-input {
+  @apply size-16 md:size-20 text-2xl md:text-3xl bg-transparent focus:outline-none caret-green-0 text-green-0 placeholder:text-grey-dark-2 !important;
 }
