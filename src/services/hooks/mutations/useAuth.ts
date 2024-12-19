@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import { axiosInit } from "@/services/axiosInit";
 import { errorToast, successToast } from "@/utils/createToast";
 import { APP_TOKEN_STORAGE_KEY, APP_USERDATA_STORAGE_KEY } from "@/constants/utils";
-import { login } from "../../apis/auth";
+import { login, sendResetPasswordEmail } from "@/services/apis/auth";
 
 
 function onLoginSuccess(responseData: any) {
@@ -20,7 +20,6 @@ export const useLogin = (fn?: (v: any) => void) => {
   return useMutation({
     mutationFn: login,
     onSuccess: (response: any) => {
-        console.log(response)
         if (response.status === "ok") {
             if (!response?.data?.login_attempt?.account_disabled) {
                 successToast({ message: "Logged In Successfully!" })
@@ -32,6 +31,19 @@ export const useLogin = (fn?: (v: any) => void) => {
         } else {
             fn?.(response);
         }
+    },
+    onError: (err: any) => {
+      errorToast(err)
+    },
+  });
+};
+
+// eslint-disable-next-line no-unused-vars
+export const useSendResetPasswordEmail = (fn?: (v: any) => void) => {
+  return useMutation({
+    mutationFn: sendResetPasswordEmail,
+    onSuccess: (response: any) => {
+      fn?.(response);
     },
     onError: (err: any) => {
       errorToast(err)

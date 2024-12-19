@@ -7,12 +7,12 @@ export const login = async (data: LoginType) => {
   return res.data;
 };
 
-export const setPassword = async (data: SetPasswordType) => {
-  const res = await axiosInstance.post(CHANGE_PASSWORD_API, data);
+export const sendResetPasswordEmail = async (data: Partial<LoginType>) => {
+  const res = await axiosInstance.post(SEND_RESET_PASSWORD_EMAIL_API, data);
   return res.data;
 };
 
-export const sendResetPasswordEmail = async (data: Partial<LoginType>) => {
-  const res = await axiosInstance.post(SEND_RESET_PASSWORD_EMAIL_API, data);
+export const setPassword = async (data: SetPasswordType) => {
+  const res = await axiosInstance.post(CHANGE_PASSWORD_API, data);
   return res.data;
 };
