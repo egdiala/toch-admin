@@ -25,7 +25,7 @@ const DashboardLayout = ({ children }: PropsWithChildren) => {
 
   
     return (
-        <motion.div className="relative bg-gray-50 isolate flex min-h-dvh w-full overflow-hidden">
+        <motion.div className="relative bg-white isolate flex min-h-dvh w-full overflow-hidden">
             <Sidebar showSidebar={showSidebar} close={() => setShowSidebar(false)} />
                 <div className="relative h-full flex-1 flex flex-col xl:pl-60">
                     <Header close={() => setShowSidebar(!showSidebar)} />

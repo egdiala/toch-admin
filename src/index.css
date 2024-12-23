@@ -12,12 +12,34 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  --viewport-height: 100vh; /* Set a CSS variable for viewport height */
+  --header-height: 80px; /* Set a CSS variable for header height */
+}
+
+.view-page-container {
+  height: calc(
+    var(--viewport-height) - var(--header-height)
+  ); /* Calculate dynamic height */
+}
+
+body {
+  @apply overflow-hidden;
 }
 
 body,
 #root {
   font-family: "SF Pro Display", sans-serif;
   @apply min-h-screen;
+}
+
+/* For Webkit-based browsers (Chrome, Safari and Opera) */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+/* For IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 @layer base {

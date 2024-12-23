@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { AuthRoutes } from "./modules";
+import { AuthRoutes, DriverRoutes } from "./modules";
 import { DashboardPage } from "@/pages";
 import AuthLayout from "@/layouts/auth-layout";
 import { AnimatePresence } from "motion/react";
@@ -17,6 +17,7 @@ const Router = () => {
             <Routes>
                 <Route path="/" element={<DashboardLayout><LocationProvider><DashboardPage /></LocationProvider></DashboardLayout>} />
                 <Route path="auth/*" element={<AuthLayout><LocationProvider><AuthRoutes /></LocationProvider></AuthLayout>} />
+                <Route path="drivers/*" element={<DashboardLayout><LocationProvider><DriverRoutes /></LocationProvider></DashboardLayout>} />
             </Routes>
         </BrowserRouter>
     );
