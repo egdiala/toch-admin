@@ -9,7 +9,7 @@ export const DriversPage = () => {
     const [driverFilters, setDriverFilters] = useState({
         page: 1
     })
-    const { data } = useGetDrivers({ ...driverFilters, item_per_page: itemsPerPage.toString() })
+    useGetDrivers({ ...driverFilters, item_per_page: itemsPerPage.toString() })
     const driverCards = [
         { label: "All Drivers", value: "7,231", percentage: "+20.1%" },
         { label: "Pending Drivers", value: "3,231", percentage: "+20.1%" },
