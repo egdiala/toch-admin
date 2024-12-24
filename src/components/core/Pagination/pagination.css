@@ -7,5 +7,5 @@
 }
 
 .ego-pagination-arrow-button-active {
-  @apply w-7 h-7 grid content-center justify-items-center rounded border border-accent-1 bg-accent-1 text-white font-medium text-base transition-all duration-500 ease-out disabled:cursor-not-allowed !important;
+  @apply w-7 h-7 grid content-center justify-items-center rounded border border-green-brand bg-green-brand text-white font-medium text-base transition-all duration-500 ease-out disabled:cursor-not-allowed !important;
 }

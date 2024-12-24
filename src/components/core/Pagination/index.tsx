@@ -48,9 +48,9 @@ export const Pagination: React.FC<PaginationProps> = ({
       className={`ego-pagination-container ${className ?? "pt-4 px-4 pb-2.5"}`}
     >
       <div className="relative inline-block text-left">
-        <div className="text-sm text-grey-dark-3 inline-flex justify-center w-full focus:outline-none items-center gap-2">
+        <div className="text-sm text-grey-dark-2 inline-flex justify-center w-full focus:outline-none items-center gap-2">
             Showing page 
-            <span className="text-grey-dark-1 font-normal">
+            <span className="text-green-0 font-normal">
                 {currentPage} of {totalPages}
             </span>
         </div>

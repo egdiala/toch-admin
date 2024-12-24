@@ -34,18 +34,18 @@ export const TableAction: React.FC<TableActionProps> = forwardRef(({
 }, ref: React.LegacyRef<HTMLButtonElement>) => {
   const btn = {
     themes: {
-      primary: "ego-table-action--primary",
-      secondary: "ego-table-action--secondary",
-      tertiary: "ego-table-action--tertiary",
-      grey: "ego-table-action--grey",
-      ghost: "ego-table-action--ghost",
+      primary: "z-touch-table-action--primary",
+      secondary: "z-touch-table-action--secondary",
+      tertiary: "z-touch-table-action--tertiary",
+      grey: "z-touch-table-action--grey",
+      ghost: "z-touch-table-action--ghost",
     },
   };
 
-  const width = block && "ego-button--block";
+  const width = block && "z-touch-button--block";
   
   return (
-    <button className={cn("w-fit", "ego-button", btn.themes[theme as keyof typeof btn.themes], width, className)} ref={ref} {...props}>
+    <button className={cn("w-fit", "z-touch-button", btn.themes[theme as keyof typeof btn.themes], width, className)} ref={ref} {...props}>
 {       children}
     </button>
   );

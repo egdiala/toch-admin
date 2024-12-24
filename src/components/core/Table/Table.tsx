@@ -133,7 +133,7 @@ export const Table: React.FC<TableProps> = ({
                           : undefined
                       }
                     >
-                      <div className="flex items-center gap-1 text-grey-dark-1 text-sm font-medium whitespace-nowrap">
+                      <div className="flex items-center gap-1 text-green-0 text-sm font-medium whitespace-nowrap">
                         {flexRender(
                           header.column.columnDef.header,
                           header.getContext()
@@ -167,13 +167,13 @@ export const Table: React.FC<TableProps> = ({
                     key={row.id}
                     data-testid={row.id}
                     onClick={() => onClick?.(row)}
-                    className={cn("hover:bg-green-4", !onClick ? "cursor-default" : "cursor-pointer", row?.getIsSelected() && "bg-green-4")}
+                    className={cn("hover:bg-sand-2", !onClick ? "cursor-default" : "cursor-pointer", row?.getIsSelected() && "bg-sand-3")}
                   >
                     {row.getVisibleCells().map((cell) => {
                       return (
                         <td
                           key={cell.id}
-                          className="text-left pl-2 pr-3 py-3.5 text-grey-dark-2 text-sm font-normal"
+                          className="text-left pl-2 pr-3 py-3.5 text-green-0 text-sm font-normal"
                           onClick={(e) => {
                             if (
                               cell.column.id === "action" ||
