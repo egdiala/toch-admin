@@ -1,17 +1,21 @@
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { format } from "date-fns"
-import { RenderIf, Table, TableAction } from "@/components/core"
-import { FetchedDriversCountStatusType, FetchedDriverType } from "@/types/drivers"
-import { Icon } from "@iconify/react/dist/iconify.js"
+import { Icon } from "@iconify/react"
+import { useLocation, useNavigate } from "react-router"
 import { useGetDrivers } from "@/services/hooks/queries"
 import { Loader } from "@/components/core/Button/Loader"
-import { updateQueryParams } from "@/hooks/usePaginationParams"
+import { getPaginationParams, updateQueryParams } from "@/hooks/usePaginationParams"
+import { RenderIf, Table, TableAction } from "@/components/core"
+import { FetchedDriversCountStatusType, FetchedDriverType } from "@/types/drivers"
 
 export const DriversPage = () => {
+    const location = useLocation()
+    const navigate = useNavigate()
     const [itemsPerPage] = useState(15)
-    const [driverFilters, setDriverFilters] = useState({
-        page: 1
-    })
+    const searchParams = new URLSearchParams(location.search)
+    const [driverFilters, setDriverFilters] = useState(
+        getPaginationParams(searchParams, { page: 1 })
+    )
     const { data: driversCountStatus } = useGetDrivers<FetchedDriversCountStatusType>({ component: "count-status" })
     const { data: driversCount, isLoading: isLoadingDriversCount } = useGetDrivers<{ total: number; }>({ component: "count" })
     const { data: drivers, isLoading: isLoadingDrivers } = useGetDrivers<FetchedDriverType[]>({ ...driverFilters, item_per_page: itemsPerPage.toString() })
@@ -60,11 +64,20 @@ export const DriversPage = () => {
         }
     ];
 
-    const handlePageChange = (page: number) => {
+    const handlePageChange = async (page: number) => {
         // in a real page, this function would paginate the data from the backend
-        setDriverFilters((prev) => ({ ...prev, page }))
-        updateQueryParams(driverFilters)
+        setDriverFilters((prev) => {
+            const updatedFilters = { ...prev, page };
+            updateQueryParams(updatedFilters); // Use the updated filters directly
+            return updatedFilters;
+        });
+
     };
+
+    useEffect(() => {
+        const updatedFilters = getPaginationParams(new URLSearchParams(location.search), { page: 1 });
+        setDriverFilters(updatedFilters);
+    }, [location.search]);
     
     return (
         <div className="p-4 md:p-6 view-page-container overflow-y-scroll">
@@ -104,10 +117,11 @@ export const DriversPage = () => {
                             columns={columns}
                             data={drivers ?? []}
                             perPage={itemsPerPage}
-                            page={driverFilters.page}
+                            page={Number(driverFilters.page)}
                             onPageChange={handlePageChange}
                             totalCount={driversCount?.total}
                             emptyStateText="We couldn't find any driver on the system."
+                            onClick={({ original }: { original: FetchedDriverType }) => navigate(`/drivers/${original?.driver_id}/profile`)}
                         />
                     </RenderIf>
                     <RenderIf condition={isLoadingDrivers || isLoadingDriversCount}>
