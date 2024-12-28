@@ -73,6 +73,27 @@ export const DriverProfilePage = () => {
             { label: "LASSRA ID (Lagos Residents Only)", value: driver?.lasrra_id?.value },
         ]
     },[driver?.driver_license_id?.value, driver?.lasrra_id?.value, driver?.nin_id?.value])
+    
+    const works = useMemo(() => {
+        return [
+            { label: "Years of Experience", value: `${driver?.exp_year} ${driver?.exp_year === 1 ? "year" : "years"}` },
+            { label: "Has Experience with", value: driver?.exp_vehicle.map((vehicle, key) => <div key={key} className="font-medium py-1 px-2 rounded-full bg-grey-dark-4">{vehicle}</div>) },
+        ]
+    },[driver?.exp_vehicle, driver?.exp_year])
+    
+    const education = useMemo(() => {
+        return [
+            { label: "Highest Level of Education", value: driver?.highest_level.replace(/-/i, " ") },
+            { label: "School Name", value: driver?.school },
+        ]
+    },[driver?.highest_level, driver?.school])
+    
+    const medicals = useMemo(() => {
+        return [
+            { label: "Blood Group", value: driver?.blood_group },
+            { label: "Wear Eye glasses?", value: driver?.wear_glasses },
+        ]
+    },[driver?.blood_group, driver?.wear_glasses])
 
     useEffect(() => {
         if (driver === undefined) {
@@ -130,6 +151,42 @@ export const DriverProfilePage = () => {
                         <div key={key} className="grid gap-1 content-start">
                             <span className="text-sm text-grey-dark-2">{item?.label}</span>
                             <p className="text-sm text-green-0">{item?.value}</p>
+                        </div>
+                    )
+                }
+                </div>
+            </DisclosureWrapper>
+            <DisclosureWrapper title="Work History" titleIcon="lucide:briefcase-business">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
+                {
+                    works.map((work, key) =>
+                        <div key={key} className="grid gap-1 content-start">
+                            <span className="text-sm text-grey-dark-2">{work?.label}</span>
+                            <div className="flex items-center gap-2 text-sm text-green-0">{work?.value}</div>
+                        </div>
+                    )
+                }
+                </div>
+            </DisclosureWrapper>
+            <DisclosureWrapper title="Education" titleIcon="lucide:graduation-cap">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
+                {
+                    education.map((item, key) =>
+                        <div key={key} className="grid gap-1 content-start">
+                            <span className="text-sm text-grey-dark-2">{item?.label}</span>
+                            <p className="flex items-center gap-2 text-sm text-green-0 capitalize">{item?.value}</p>
+                        </div>
+                    )
+                }
+                </div>
+            </DisclosureWrapper>
+            <DisclosureWrapper title="Medicals" titleIcon="lucide:heart-pulse">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
+                {
+                    medicals.map((item, key) =>
+                        <div key={key} className="grid gap-1 content-start">
+                            <span className="text-sm text-grey-dark-2">{item?.label}</span>
+                            <p className="flex items-center gap-2 text-sm text-green-0 capitalize">{item?.value}</p>
                         </div>
                     )
                 }
