@@ -104,8 +104,8 @@ export const DriverProfilePage = () => {
         <div className="flex flex-col gap-5">
             <div className="flex flex-col md:flex-row items-center gap-8 py-5 px-4 bg-accent-2 rounded-lg">
                 <div className="grid justify-items-center relative">
-                    <div className="relative border border-green-3 rounded-lg w-32 h-full overflow-hidden">
-                        <img src={driver?.avatar || blankImage} alt={`${driver?.first_name}_${driver?.last_name}`} className="object-cover w-32 h-full" />
+                    <div className="relative border border-green-3 rounded-lg w-32 h-28 overflow-hidden">
+                        <img src={driver?.avatar || blankImage} alt={`${driver?.first_name}_${driver?.last_name}`} className="object-cover object-center w-32 h-28" />
                     </div>
                     <div className="absolute -bottom-3.5 bg-orange-3 text-sm py-1 px-3 rounded-full">Level 1</div>
                 </div>
