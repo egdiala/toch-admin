@@ -35,6 +35,7 @@ export interface FetchedDriverType {
     gender: "female" | "male";
     status: number;
     signup_status: number;
+    stage: number;
     avatar: string;
     school_avatar: string;
     dob: string;

@@ -107,7 +107,7 @@ export const DriverProfilePage = () => {
                     <div className="relative border border-green-3 rounded-lg w-32 h-28 overflow-hidden">
                         <img src={driver?.avatar || blankImage} alt={`${driver?.first_name}_${driver?.last_name}`} className="object-cover object-center w-32 h-28" />
                     </div>
-                    <div className="absolute -bottom-3.5 bg-orange-3 text-sm py-1 px-3 rounded-full">Level 1</div>
+                    <div className="absolute -bottom-3.5 bg-orange-3 text-sm py-1 px-3 rounded-full">Level {driver?.stage || "1"}</div>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-8 w-full">
                     {
