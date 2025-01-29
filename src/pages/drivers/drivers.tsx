@@ -4,9 +4,10 @@ import { Icon } from "@iconify/react"
 import { useLocation, useNavigate } from "react-router"
 import { useGetDrivers } from "@/services/hooks/queries"
 import { Loader } from "@/components/core/Button/Loader"
-import { getPaginationParams, updateQueryParams } from "@/hooks/usePaginationParams"
 import { RenderIf, Table, TableAction } from "@/components/core"
 import { FetchedDriversCountStatusType, FetchedDriverType } from "@/types/drivers"
+import { getPaginationParams, updateQueryParams } from "@/hooks/usePaginationParams"
+import { cn } from "@/libs/cn"
 
 export const DriversPage = () => {
     const location = useLocation()
@@ -61,7 +62,27 @@ export const DriversPage = () => {
                     <div className="text-sm capitalize whitespace-nowrap">{item?.phone_number || "-"}</div>
                 )
             }
-        }
+        },
+        {
+            header: () => "Level",
+            accessorKey: "stage",
+            cell: ({ row }: { row: any; }) => {
+                const item = row?.original as FetchedDriverType
+                return (
+                    <div className="text-sm capitalize whitespace-nowrap">Level {item?.stage || "1"}</div>
+                )
+            }
+        },
+        {
+            header: () => "Status",
+            accessorKey: "signup_status",
+            cell: ({ row }: { row: any; }) => {
+                const item = row?.original as FetchedDriverType
+                return (
+                    <div className={cn("text-sm capitalize whitespace-nowrap", item?.signup_status === 5 ? "text-semantic-success" : "text-semantic-amber")}>{item?.signup_status === 5 ? "Complete" : "Pending"}</div>
+                )
+            }
+        },
     ];
 
     const handlePageChange = async (page: number) => {
