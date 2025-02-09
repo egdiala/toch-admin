@@ -169,15 +169,25 @@ export const DriverProfilePage = () => {
                 </div>
             </DisclosureWrapper>
             <DisclosureWrapper title="Education" titleIcon="lucide:graduation-cap">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
-                {
-                    education.map((item, key) =>
-                        <div key={key} className="grid gap-1 content-start">
-                            <span className="text-sm text-grey-dark-2">{item?.label}</span>
-                            <p className="flex items-center gap-2 text-sm text-green-0 capitalize">{item?.value}</p>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
+                    {
+                        education.map((item, key) =>
+                            <div key={key} className="grid gap-1 content-start">
+                                <span className="text-sm text-grey-dark-2">{item?.label}</span>
+                                <p className="flex items-center gap-2 text-sm text-green-0 capitalize">{item?.value}</p>
+                            </div>
+                        )
+                    }
+                    <div className="flex items-center w-fit gap-6 p-2 rounded-lg bg-grey-dark-4">
+                        <div className="flex items-center gap-1 text-grey-dark-2">
+                            <Icon icon="lucide:file" width={16} height={16} />
+                            <span className="text-sm">Certificate</span>
                         </div>
-                    )
-                }
+                        <div className="flex items-center gap-1 text-accent-2">
+                            <Icon icon="lucide:eye" width={16} height={16} />
+                            <a href={driver?.school_avatar} target="_blank" className="text-sm font-bold underline">View</a>
+                        </div>
+                    </div>
                 </div>
             </DisclosureWrapper>
             <DisclosureWrapper title="Medicals" titleIcon="lucide:heart-pulse">
