@@ -33,6 +33,24 @@ export interface FetchedDriverType {
         status: number;
     };
     gender: "female" | "male";
+    experience_data: {
+        _id: string;
+        driver_id: string;
+        exp_year: number;
+        company: string;
+        createdAt: Date | string;
+        updatedAt: Date | string;
+        __v: number;
+    }[];
+    school_data: {
+        _id: string;
+        driver_id: string;
+        level: string;
+        school: string;
+        createdAt: Date | string;
+        updatedAt: Date | string;
+        __v: number
+    }[];
     status: number;
     signup_status: number;
     stage: number;

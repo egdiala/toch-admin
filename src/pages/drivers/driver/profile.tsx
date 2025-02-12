@@ -70,7 +70,7 @@ export const DriverProfilePage = () => {
         return [
             { label: "Driver License No.", value: driver?.driver_license_id?.value },
             { label: "NIN", value: driver?.nin_id?.value },
-            { label: "LASSRA ID (Lagos Residents Only)", value: driver?.lasrra_id?.value },
+            { label: "LASDRI ID (Lagos Residents Only)", value: driver?.lasrra_id?.value },
         ]
     },[driver?.driver_license_id?.value, driver?.lasrra_id?.value, driver?.nin_id?.value])
     
@@ -157,37 +157,75 @@ export const DriverProfilePage = () => {
                 </div>
             </DisclosureWrapper>
             <DisclosureWrapper title="Work History" titleIcon="lucide:briefcase-business">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
-                {
-                    works.map((work, key) =>
-                        <div key={key} className="grid gap-1 content-start">
-                            <span className="text-sm text-grey-dark-2">{work?.label}</span>
-                            <div className="flex items-center gap-2 text-sm text-green-0">{work?.value}</div>
-                        </div>
-                    )
-                }
-                </div>
-            </DisclosureWrapper>
-            <DisclosureWrapper title="Education" titleIcon="lucide:graduation-cap">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
+                <div className="grid gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
                     {
-                        education.map((item, key) =>
+                        works.map((work, key) =>
                             <div key={key} className="grid gap-1 content-start">
-                                <span className="text-sm text-grey-dark-2">{item?.label}</span>
-                                <p className="flex items-center gap-2 text-sm text-green-0 capitalize">{item?.value}</p>
+                                <span className="text-sm text-grey-dark-2">{work?.label}</span>
+                                <div className="flex items-center gap-2 text-sm text-green-0">{work?.value}</div>
                             </div>
                         )
                     }
-                    <div className="flex items-center w-fit gap-6 p-2 rounded-lg bg-grey-dark-4">
-                        <div className="flex items-center gap-1 text-grey-dark-2">
-                            <Icon icon="lucide:file" width={16} height={16} />
-                            <span className="text-sm">Certificate</span>
-                        </div>
-                        <div className="flex items-center gap-1 text-accent-2">
-                            <Icon icon="lucide:eye" width={16} height={16} />
-                            <a href={driver?.school_avatar} target="_blank" className="text-sm font-bold underline">View</a>
+                    </div>
+                    {
+                        driver?.experience_data.map((exp, key) =>
+                            <div key={key} className="grid gap-2">
+                                <span className="text-[#0073C4] text-sm font-medium">Experience {key + 1}</span>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
+                                        <div className="grid gap-1 content-start">
+                                            <span className="text-sm text-grey-dark-2">Company</span>
+                                            <div className="flex items-center gap-2 text-sm text-green-0">{exp?.company}</div>
+                                        </div>
+                                        <div className="grid gap-1 content-start">
+                                            <span className="text-sm text-grey-dark-2">Years Worked there</span>
+                                        <div className="flex items-center gap-2 text-sm text-green-0">{exp?.exp_year} year{exp?.exp_year === 1 ? "" : "s"}</div>
+                                        </div>
+                                </div>
+                            </div>
+                        )
+                    }
+                </div>
+            </DisclosureWrapper>
+            <DisclosureWrapper title="Education" titleIcon="lucide:graduation-cap">
+                <div className="grid gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
+                        {
+                            education.map((item, key) =>
+                                <div key={key} className="grid gap-1 content-start">
+                                    <span className="text-sm text-grey-dark-2">{item?.label}</span>
+                                    <p className="flex items-center gap-2 text-sm text-green-0 capitalize">{item?.value}</p>
+                                </div>
+                            )
+                        }
+                        <div className="flex items-center w-fit gap-6 p-2 rounded-lg bg-grey-dark-4">
+                            <div className="flex items-center gap-1 text-grey-dark-2">
+                                <Icon icon="lucide:file" width={16} height={16} />
+                                <span className="text-sm">Certificate</span>
+                            </div>
+                            <div className="flex items-center gap-1 text-accent-2">
+                                <Icon icon="lucide:eye" width={16} height={16} />
+                                <a href={driver?.school_avatar} target="_blank" className="text-sm font-bold underline">View</a>
+                            </div>
                         </div>
                     </div>
+                    {
+                        driver?.school_data.map((exp, key) =>
+                            <div key={key} className="grid gap-2">
+                                <span className="text-[#0073C4] text-sm font-medium">Education {key + 1}</span>
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
+                                        <div className="grid gap-1 content-start">
+                                            <span className="text-sm text-grey-dark-2">Education Level</span>
+                                            <div className="flex items-center gap-2 text-sm text-green-0 capitalize">{exp?.level}</div>
+                                        </div>
+                                        <div className="grid gap-1 content-start">
+                                            <span className="text-sm text-grey-dark-2">School Name</span>
+                                        <div className="flex items-center gap-2 text-sm text-green-0">{exp?.school}</div>
+                                        </div>
+                                </div>
+                            </div>
+                        )
+                    }
                 </div>
             </DisclosureWrapper>
             <DisclosureWrapper title="Medicals" titleIcon="lucide:heart-pulse">
