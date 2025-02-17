@@ -23,7 +23,7 @@ export const DriversPage = () => {
         getPaginationParams(searchParams, { page: 1 })
     )
     const { data: driversCountStatus } = useGetDrivers<FetchedDriversCountStatusType>({ component: "count-status" })
-    const { data: driversCount, isLoading: isLoadingDriversCount } = useGetDrivers<{ total: number; }>({ ...component })
+    const { data: driversCount, isLoading: isLoadingDriversCount, isSuccess } = useGetDrivers<{ total: number; }>({ ...component })
     const { data: drivers, isLoading: isLoadingDrivers } = useGetDrivers<FetchedDriverType[]>({ ...driverFilters, item_per_page: itemsPerPage.toString() })
     const driverCards = useMemo(() => {
         return [
@@ -104,6 +104,12 @@ export const DriversPage = () => {
         const updatedFilters = getPaginationParams(new URLSearchParams(location.search), { page: 1 });
         setDriverFilters(updatedFilters);
     }, [location.search]);
+
+    useEffect(() => {
+        if (isSuccess && component.component === "export") {
+            setComponent(() => ({ component: "count", email: "" }))
+        }
+    },[isSuccess, component.component])
     
     return (
         <div className="p-4 md:p-6 view-page-container overflow-y-scroll">
@@ -128,7 +134,7 @@ export const DriversPage = () => {
                     <div className="flex items-center justify-between gap-2">
                         <h1 className="font-bold text-xl text-green-0">All Drivers</h1>
                         <div className="flex items-center justify-end gap-2">
-                            <ExportButton loading={isLoadingDriversCount} email={component.email} setEmail={(email) => setComponent((prev) => ({ ...prev, email }))} />
+                            <ExportButton loading={isLoadingDriversCount} email={component.email} setEmail={(email) => setComponent(() => ({ component: "export", email }))} />
                             <TableAction theme="primary">
                                 <Icon icon="lucide:filter" className="size-4" />
                                 Filter
