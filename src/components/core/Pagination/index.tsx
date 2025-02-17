@@ -37,11 +37,17 @@ export interface PaginationProps {
 export const Pagination: React.FC<PaginationProps> = ({
   currentPage = 1,
   totalPages,
+  count,
   goToPage,
+  itemsPerPage,
   prev,
   next,
   className,
 }) => {
+
+  // Calculate the range of items being shown
+  const startItem = (currentPage - 1) * itemsPerPage + 1;
+  const endItem = Math.min(currentPage * itemsPerPage, count);
 
   return (
     <div
@@ -49,12 +55,15 @@ export const Pagination: React.FC<PaginationProps> = ({
     >
       <div className="relative inline-block text-left">
         <div className="text-sm text-grey-dark-2 inline-flex justify-center w-full focus:outline-none items-center gap-2">
-            Showing page 
+            Showing items 
             <span className="text-green-0 font-normal">
-                {currentPage} of {totalPages}
+                {startItem} - {endItem} of {count}
             </span>
         </div>
       </div>
+      <span className="text-green-0 font-normal">
+          Page {currentPage} of {totalPages}
+      </span>
       <div className="flex items-center gap-2 justify-start">
         <button
           type="button"

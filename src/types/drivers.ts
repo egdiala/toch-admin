@@ -5,6 +5,7 @@ export interface FetchDriversQuery {
     item_per_page?: string;
     start_date?: string;
     end_date?: string;
+    email?: string;
     component?: "count" | "export" | "count-status";
 }
 

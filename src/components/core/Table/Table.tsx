@@ -207,6 +207,7 @@ export const Table: React.FC<TableProps> = ({
           className="px-0 py-3"
           count={totalCount as number}
           currentPage={page as number}
+          itemsPerPage={perPage as number}
           dataLength={totalCount as number}
           totalPages={Math.ceil((totalCount as number) / (perPage as number))}
           prev={prev}

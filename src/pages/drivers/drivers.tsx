@@ -1,24 +1,29 @@
 import { useEffect, useMemo, useState } from "react"
+import { cn } from "@/libs/cn"
 import { format } from "date-fns"
 import { Icon } from "@iconify/react"
+import { ExportButton } from "@/components/shared"
 import { useLocation, useNavigate } from "react-router"
 import { useGetDrivers } from "@/services/hooks/queries"
 import { Loader } from "@/components/core/Button/Loader"
 import { RenderIf, Table, TableAction } from "@/components/core"
 import { FetchedDriversCountStatusType, FetchedDriverType } from "@/types/drivers"
 import { getPaginationParams, updateQueryParams } from "@/hooks/usePaginationParams"
-import { cn } from "@/libs/cn"
 
 export const DriversPage = () => {
     const location = useLocation()
     const navigate = useNavigate()
     const [itemsPerPage] = useState(15)
     const searchParams = new URLSearchParams(location.search)
+    const [component, setComponent] = useState({
+        component: "count" as "count" | "export" | "count-status",
+        email: ""
+    })
     const [driverFilters, setDriverFilters] = useState(
         getPaginationParams(searchParams, { page: 1 })
     )
     const { data: driversCountStatus } = useGetDrivers<FetchedDriversCountStatusType>({ component: "count-status" })
-    const { data: driversCount, isLoading: isLoadingDriversCount } = useGetDrivers<{ total: number; }>({ component: "count" })
+    const { data: driversCount, isLoading: isLoadingDriversCount } = useGetDrivers<{ total: number; }>({ ...component })
     const { data: drivers, isLoading: isLoadingDrivers } = useGetDrivers<FetchedDriverType[]>({ ...driverFilters, item_per_page: itemsPerPage.toString() })
     const driverCards = useMemo(() => {
         return [
@@ -123,10 +128,7 @@ export const DriversPage = () => {
                     <div className="flex items-center justify-between gap-2">
                         <h1 className="font-bold text-xl text-green-0">All Drivers</h1>
                         <div className="flex items-center justify-end gap-2">
-                            <TableAction theme="tertiary">
-                                <Icon icon="lucide:upload" className="size-4 text-grey-dark-2" />
-                                Export
-                            </TableAction>
+                            <ExportButton loading={isLoadingDriversCount} email={component.email} setEmail={(email) => setComponent((prev) => ({ ...prev, email }))} />
                             <TableAction theme="primary">
                                 <Icon icon="lucide:filter" className="size-4" />
                                 Filter
