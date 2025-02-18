@@ -1,9 +1,9 @@
-import { Fragment, useEffect } from "react"
+import { Fragment, useEffect, useMemo } from "react"
 import { cn } from "@/libs/cn"
 import { Icon } from "@iconify/react"
 import { useGetDriver } from "@/services/hooks/queries"
 import { Loader } from "@/components/core/Button/Loader"
-import { RenderIf, TableAction } from "@/components/core"
+import { Breadcrumb, RenderIf, TableAction } from "@/components/core"
 import { NavLink, Outlet, useNavigate, useParams } from "react-router"
 
 export const DriverPage = () => {
@@ -14,6 +14,12 @@ export const DriverPage = () => {
         { name: "Profile", link: `/drivers/${id as string}/profile` },
         { name: "Application", link: `/drivers/${id as string}/application` },
     ]
+    const breadcrumbItems = useMemo(() => {
+        return [
+            { label: "Drivers", href: "/drivers" },
+            { label: `${driver?.first_name || ""} ${driver?.last_name || ""}`, href: `/drivers/${id}/profile` }
+        ]
+    },[driver?.first_name, driver?.last_name, id])
     useEffect(() => {
         if (!driver?.driver_id && !isFetching) {
             navigate("/drivers")
@@ -23,6 +29,7 @@ export const DriverPage = () => {
         <div className="p-4 md:p-6 view-page-container overflow-y-scroll">
             <RenderIf condition={!isFetching}>
                 <div className="flex flex-col gap-5">
+                    <Breadcrumb items={breadcrumbItems} />
                     <div className="flex items-center justify-between">
                         <div className="rounded-full border border-grey-dark-3 p-1 flex items-center gap-2 w-fit overflow-scroll scrollbar-hide">
                             {
