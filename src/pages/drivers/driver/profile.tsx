@@ -68,9 +68,9 @@ export const DriverProfilePage = () => {
     
     const identity = useMemo(() => {
         return [
-            { label: "Driver License No.", value: driver?.driver_license_id?.value === driver?.email ? "Not Applicable" : driver?.driver_license_id?.value },
-            { label: "NIN", value: driver?.nin_id?.value === driver?.email ? "Not Applicable" : driver?.nin_id?.value },
-            { label: "LASDRI ID (Lagos Residents Only)", value: driver?.lasrra_id?.value === driver?.email ? "Not Applicable" : driver?.lasrra_id?.value },
+            { label: "Driver License No.", value: driver?.driver_license_id?.value === driver?.email ? "Not Provided" : driver?.driver_license_id?.value },
+            { label: "NIN", value: driver?.nin_id?.value === driver?.email ? "Not Provided" : driver?.nin_id?.value },
+            { label: "LASDRI ID (Lagos Residents Only)", value: driver?.lasrra_id?.value === driver?.email ? "Not Provided" : driver?.lasrra_id?.value },
         ]
     },[driver?.driver_license_id?.value, driver?.email, driver?.lasrra_id?.value, driver?.nin_id?.value])
     
